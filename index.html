@@ -25,11 +25,11 @@
       <section class="container">
         <div class="wrapper">
           <h1 class="title">Character ASCII code Finder</h1>
-          <form action="submit" class="formInput">
+          <form class="formInput">
             <label for="chatInput">
               Enter A character or Number(Not Symbol)
             </label>
-            <input type="text" class="charInput" name="charInput" maxlength="1" placeholder="A..Z/a..z/0..9">
+            <input type="text" class="charInput" name="charInput" placeholder="A..Z/a..z/0..9" onkeydown="keyPress(event)" maxlength="1">
           </form>
           <div class="output">JS output</div>
         </div>
