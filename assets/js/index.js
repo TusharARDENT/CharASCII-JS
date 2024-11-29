@@ -7,33 +7,37 @@ const body = document.querySelector(".body");
 input.addEventListener("keydown", keyPress);
 
 function keyPress(event) {
-    console.log(event.key);
-    const key = event.key;
-    let value = key.charCodeAt(0);
-    const valid = isValid(key);
+  console.log(event.key);
+  const key = event.key;
+  let value = key.charCodeAt(0);
+  const valid = isValid(key);
+  if (key === " ") {
+    console.log("Spacebar pressed, ignoring...");
+    return; // Exit the function
+  }
 
-    if (valid) {
-        console.log("valid");
-        output.textContent = `You have entered ${key} and it's ASCII value is ${value}`;
-        if (key.length === 1) {
-            event.target.value = key;
-        } else {
-            event.target.value = "";
-            output.textContent = `JS Output`;
-        }
-        body.classList.remove("error")
-        output.classList.remove("error-word");
+  if (valid) {
+    console.log("valid");
+    output.textContent = `You have entered ${key} and it's ASCII value is ${value}`;
+    if (key.length === 1) {
+      event.target.value = key;
     } else {
-        console.log("Invalid");
-        output.textContent = `You have entered ${key} it is not a valid input`;
-        output.classList.add("error-word");
-        console.log(body.classList.add("error"));
+      event.target.value = "";
+      output.textContent = `JS Output`;
     }
-    console.log(event.target.value)
+    body.classList.remove("error");
+    output.classList.remove("error-word");
+  } else {
+    console.log("Invalid");
+    output.textContent = `You have entered ${key} it is not a valid input`;
+    output.classList.add("error-word");
+    console.log(body.classList.add("error"));
+  }
+  console.log(event.target.value);
 }
 
 function isValid(val) {
-    const myRegEx = /^[A-Za-z0-9]/;
-    const isValid = myRegEx.test(val);
-    return isValid;
+  const myRegEx = /^[A-Za-z0-9]/;
+  const isValid = myRegEx.test(val);
+  return isValid;
 }
